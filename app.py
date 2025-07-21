@@ -1,5 +1,6 @@
 from flask import Flask, request, redirect
 import urllib.parse
+import os
 
 app = Flask(__name__)
 
@@ -18,4 +19,5 @@ def redirect_obsidian():
     return redirect(obsidian_link, code=302)
 
 if __name__ == "__main__":
-    app.run()
+    port = int(os.environ.get("PORT", 5000))  # Lấy PORT từ Render hoặc dùng 5000 mặc định
+    app.run(host="0.0.0.0", port=port)
